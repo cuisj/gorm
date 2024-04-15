@@ -771,7 +771,13 @@ func (scope *Scope) selectSQL() string {
 		if len(scope.Search.joinConditions) > 0 {
 			return fmt.Sprintf("%v.*", scope.QuotedTableName())
 		}
-		return "*"
+
+		columns := make([]string, len(scope.Fields()))
+		for idx, fld := range scope.Fields() {
+			columns[idx] = scope.Quote(fld.DBName)
+		}
+
+		return strings.Join(columns, ", ")
 	}
 	return scope.buildSelectQuery(scope.Search.selects)
 }
