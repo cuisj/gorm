@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/notutensil/gorm"
+	"github.com/cuisj/gorm"
 )
 
 type CalculateField struct {

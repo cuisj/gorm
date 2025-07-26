@@ -4,7 +4,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/notutensil/gorm"
+	"github.com/cuisj/gorm"
 )
 
 type ModelA struct {
