@@ -772,12 +772,16 @@ func (scope *Scope) selectSQL() string {
 			return fmt.Sprintf("%v.*", scope.QuotedTableName())
 		}
 
-		columns := make([]string, len(scope.Fields()))
-		for idx, fld := range scope.Fields() {
-			columns[idx] = scope.Quote(fld.DBName)
+		if len(scope.Fields()) > 0 {
+			columns := make([]string, len(scope.Fields()))
+			for idx, fld := range scope.Fields() {
+				columns[idx] = scope.Quote(fld.DBName)
+			}
+
+			return strings.Join(columns, ", ")
 		}
 
-		return strings.Join(columns, ", ")
+		return "*"
 	}
 	return scope.buildSelectQuery(scope.Search.selects)
 }
